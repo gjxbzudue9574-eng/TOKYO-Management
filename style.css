@@ -258,6 +258,61 @@ img {
     font-size: 16px;
   }
 }
+/* إصلاح عرض الهاتف */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+.login-wrap,
+.app,
+main,
+.page,
+.card,
+section {
+  width: 100%;
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .app {
+    width: 100%;
+    min-width: 0;
+  }
+
+  main {
+    width: 100%;
+    padding: 12px;
+    margin: 0;
+  }
+
+  .page {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  nav {
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+}
 /* ===== TOKYO Mobile Fix ===== */
 
 .login-wrap,
