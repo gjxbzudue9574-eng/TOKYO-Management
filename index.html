@@ -1,48 +1,316 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
+<title>TOKYO Management</title>
+<style>
+:root{
+  --bg:#0b0b0d;--panel:#121318;--panel2:#17181d;--line:#2d3037;
+  --gold:#d6a83f;--gold2:#f0d48b;--text:#fff;--muted:#9da1aa;
+  --red:#d94848;--green:#299266;--blue:#4a84d8;--violet:#805bd0
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Arabic",Tahoma,Arial,sans-serif}
+body{background:radial-gradient(circle at 50% -10%,#2a2115 0,#0d0e10 34%,#09090b 70%)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
 
-المدير العام
-مثبّت
-📣
-⚠ عاجل
-غداً عطلة رسمية
-جميع الموظفين في إجازة
-16 / 08 / 2026
-16
-أغسطس
-2026
-⌕
+.login{min-height:100svh;display:grid;place-items:center;padding:22px}
+.login-card{width:min(440px,100%);background:linear-gradient(180deg,#17161b,#0d0e11);border:1px solid #413725;border-radius:30px;padding:30px;box-shadow:0 30px 90px #0009;text-align:center}
+.logo-mark{width:130px;height:130px;margin:auto;border-radius:30px;display:grid;place-items:center;background:linear-gradient(145deg,#0c0c0e,#191612);border:1px solid #55482f;color:var(--gold);font-size:30px;font-weight:900;letter-spacing:4px}
+.login h1{margin:16px 0 4px;color:var(--gold2);font-size:30px}
+.muted{color:var(--muted)}
+.field{margin-top:13px;text-align:right}
+.field label{display:block;font-size:12px;margin-bottom:6px;color:#d2d2d5}
+.field input,.field textarea,.field select{width:100%;border:1px solid #34363d;background:#0d0e11;color:#fff;border-radius:14px;padding:13px 14px;outline:none}
+.field textarea{min-height:100px;resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold)}
+.btn{border:0;border-radius:14px;padding:12px 15px;font-weight:800}
+.btn.gold{background:linear-gradient(135deg,#bd9137,#f0cf7a);color:#18130b}
+.btn.dark{background:#25272e;color:#fff}
+.btn.red{background:#8a3137;color:#fff}
+.btn.green{background:#1f6f4c;color:#fff}
+.btn.full{width:100%}
 
-⌕
-البحث
-البحث عن أي كلمة في جميع الأقسام
+.app{min-height:100svh;padding-bottom:86px}
+.topbar{position:sticky;top:0;z-index:30;background:#0d0e11ef;backdrop-filter:blur(16px);border-bottom:1px solid #272931;padding:11px 14px;display:flex;align-items:center;gap:10px}
+.mini-logo{width:48px;height:48px;border-radius:14px;border:1px solid #51462f;display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:11px}
+.brand b{display:block;color:var(--gold2);font-size:18px}
+.brand small{color:var(--muted)}
+.top-actions{margin-right:auto;display:flex;gap:7px}
+.icon-btn{border:1px solid #2f3239;background:#17181d;color:#fff;border-radius:11px;width:40px;height:40px}
+.content{max-width:1150px;margin:auto;padding:14px}
 
-📏
-القياسات
-حفظ وإدارة جميع القياسات والبيانات
+.hero{background:linear-gradient(180deg,#15161a,#101115);border:1px solid #2b2d34;border-radius:22px;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:12px}
+.avatar{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#d5aa4d,#6b4b17);display:grid;place-items:center;font-size:24px;font-weight:900}
+.hero h2{margin:0 0 4px;color:var(--gold2)}
+.urgent{background:linear-gradient(135deg,#3d171b,#211215);border:1px solid #78353b;border-right:5px solid #e45454;border-radius:18px;padding:14px;margin-bottom:13px}
+.urgent .tag{color:#ff9090;font-size:12px;font-weight:900}
+.urgent h3{margin:5px 0;font-size:16px}
+.searchbar{display:flex;gap:8px;margin-bottom:13px}
+.searchbar input{flex:1;min-width:0;background:#101115;color:#fff;border:1px solid #30323a;border-radius:15px;padding:13px 14px;outline:none}
+.searchbar input:focus{border-color:var(--gold)}
+.searchbar button{border:0;border-radius:14px;background:var(--gold);color:#17130d;font-weight:900;padding:0 18px}
 
-📄
-الوصولات
-إدارة ومتابعة جميع الوصولات
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.module{min-height:122px;background:linear-gradient(145deg,#17181d,#101115);border:1px solid #2b2d34;border-radius:20px;padding:15px;position:relative;overflow:hidden}
+.module:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:#d6ae570b;left:-26px;bottom:-40px}
+.module .ico{font-size:29px}
+.module h3{margin:8px 0 2px;font-size:15px}
+.module p{margin:0;color:var(--muted);font-size:11px}
+.module.locked{opacity:.45}
 
-◷
-أوقات الدوام
-الحضور والغياب والإجازات للموظفين
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.stat{background:#131419;border:1px solid #292b32;border-radius:16px;padding:10px;text-align:center}
+.stat strong{display:block;color:var(--gold2);font-size:19px}
+.stat span{font-size:10px;color:var(--muted)}
 
-🏬
-ملاحظات المعرض
-ملاحظات وتعليمات ومصروفات المعرض
+.page{display:none}
+.page.active{display:block}
+.page-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.page-head h2{margin:0;font-size:21px}
+.card{background:linear-gradient(145deg,#17181d,#111216);border:1px solid #2c2e35;border-radius:19px;padding:15px;margin-bottom:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.wide{grid-column:1/-1}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:#24262d;border:1px solid #33363e;border-radius:999px;padding:6px 9px;font-size:11px}
+.chip.gold{background:#40351f;border-color:#69562d;color:#f0cf84}
+.record{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #292b31}
+.record:last-child{border-bottom:0}
+.record b{font-size:13px}
+.record small{display:block;color:var(--muted);margin-top:3px}
+.money{color:#8fe0af}
+.danger{color:#ff8d8d}
+.empty{text-align:center;color:var(--muted);padding:25px}
+.table-wrap{overflow:auto;border-radius:15px;border:1px solid #2d2f36}
+.table{width:100%;border-collapse:collapse;min-width:620px;background:#111216}
+.table th,.table td{padding:10px;border-bottom:1px solid #292b31;text-align:right;white-space:nowrap;font-size:12px}
+.table th{color:#d5b96f;background:#18191e}
 
-🏭
-المعمل
-ملفات الزبائن وترتيب العمل والنواقص
+.bottom{position:fixed;bottom:0;left:0;right:0;z-index:35;background:#0c0d10f2;backdrop-filter:blur(15px);border-top:1px solid #282a31;display:flex;justify-content:space-around;padding:7px 3px max(7px,env(safe-area-inset-bottom))}
+.bottom button{background:none;border:0;color:#777b84;font-size:10px;padding:4px 8px}
+.bottom button b{display:block;font-size:19px;margin-bottom:1px}
+.bottom button.active{color:var(--gold2)}
 
-🔔
-العاجل
-الأخبار والقرارات العاجلة والعطل والتنبيهات
-📅
-اليوم
-👥
-الموظفون
-1 موظف
-✅
-الحضور اليوم
-0 موظف
+.modal{position:fixed;inset:0;z-index:100;background:#000b;display:grid;place-items:end center;padding:14px}
+.modal-box{width:min(760px,100%);max-height:90svh;overflow:auto;background:#101115;border:1px solid #363942;border-radius:25px;padding:17px;box-shadow:0 30px 80px #000}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+.modal-top h3{margin:0;color:var(--gold2)}
+.close{border:0;background:#26282f;color:#fff;border-radius:10px;width:36px;height:36px;font-size:20px}
+.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.check{border:1px solid #30333b;background:#17181d;border-radius:13px;padding:10px;font-size:12px}
+.check input{width:auto}
+
+.contract-paper{background:#fff;color:#111;width:100%;max-width:794px;margin:auto;padding:26px;border-radius:10px}
+.paper-logo{text-align:center;border-bottom:2px solid #111;padding-bottom:10px}
+.paper-logo b{font-size:27px}
+.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.paper-box{border:1px solid #222;padding:9px;min-height:42px;font-size:13px}
+.paper-notes{border:1px solid #222;padding:10px;margin-top:8px;min-height:160px}
+.signs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-top:70px;text-align:center}
+.sign{border-top:1px solid #111;padding-top:8px;font-size:12px}
+
+@media(min-width:760px){.grid{grid-template-columns:repeat(4,1fr)}.content{padding:22px}.modal{place-items:center}.formgrid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:420px){.stats{grid-template-columns:repeat(2,1fr)}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.signs,.paper-grid{grid-template-columns:1fr}.signs{gap:45px}}
+@media print{body{background:#fff}.app,.modal-top,.no-print{display:none!important}.modal{display:block!important;position:static;background:#fff;padding:0}.modal-box{display:block!important;max-height:none;width:auto;border:0;padding:0;background:#fff}.contract-paper{max-width:none;width:210mm;min-height:297mm;padding:15mm;border-radius:0}}
+</style>
+</head>
+<body>
+<div id="login" class="login">
+  <div class="login-card">
+    <div class="logo-mark">TOKYO</div>
+    <h1>إدارة طوكيو</h1>
+    <div class="muted">نظام الإدارة الداخلي</div>
+    <div class="field"><label>اسم المستخدم</label><input id="loginUser" value="admin"></div>
+    <div class="field"><label>كلمة المرور</label><input id="loginPass" type="password" value="admin123"></div>
+    <button class="btn gold full" id="loginBtn" style="margin-top:16px">تسجيل الدخول</button>
+    <div class="muted" style="font-size:12px;margin-top:12px">الحساب الأولي: admin / admin123</div>
+    <div id="loginError" style="color:#ff8585;font-size:13px;margin-top:10px"></div>
+  </div>
+</div>
+
+<div id="app" class="app hidden">
+<header class="topbar">
+  <div class="mini-logo">TOKYO</div>
+  <div class="brand"><b>إدارة طوكيو</b><small id="currentUser">المدير العام</small></div>
+  <div class="top-actions"><button class="icon-btn" id="alertsBtn">🔔</button><button class="icon-btn" id="logoutBtn">↪</button></div>
+</header>
+
+<main class="content">
+<section id="home" class="page active">
+  <div class="hero"><div class="avatar">م</div><div><h2>المدير العام</h2><div class="muted">TOKYO Management</div></div></div>
+  <div id="urgentBox" class="urgent"><div class="tag">🚨 عاجل ومثبت</div><h3>مرحبًا في إدارة طوكيو</h3><div class="muted">تظهر هنا القرارات والعطل والأخبار المهمة.</div></div>
+  <div class="searchbar"><input id="homeSearch" placeholder="ابحث باسم الزبون، الهاتف أو رقم العقد..."><button id="homeSearchBtn">بحث</button></div>
+  <div class="grid">
+    <div class="module" data-go="search"><div class="ico">🔎</div><h3>البحث الشامل</h3><p>البحث في جميع الأقسام.</p></div>
+    <div class="module" data-go="measurements"><div class="ico">📐</div><h3>القياسات</h3><p>الجدران، الأبواب، النقاط والأجهزة.</p></div>
+    <div class="module" data-go="contracts"><div class="ico">📄</div><h3>الوصولات والعقود</h3><p>العقود، الدفعات والتصاميم.</p></div>
+    <div class="module" data-go="attendance"><div class="ico">⏱️</div><h3>أوقات الدوام</h3><p>الحضور والانصراف والموقع والسيلفي.</p></div>
+    <div class="module" data-go="exhibition"><div class="ico">🏪</div><h3>المعرض</h3><p>الملاحظات والمصروفات.</p></div>
+    <div class="module" data-go="factory"><div class="ico">🏭</div><h3>المعمل</h3><p>جدول العمل والمواد والنواقص.</p></div>
+    <div class="module" data-go="notes"><div class="ico">📢</div><h3>العاجل والملاحظات</h3><p>القرارات والتنبيهات والعطل.</p></div>
+    <div class="module" data-go="employees"><div class="ico">👥</div><h3>الموظفون</h3><p>الحسابات والصلاحيات.</p></div>
+  </div>
+  <div id="stats" class="stats"></div>
+</section>
+
+<section id="search" class="page"><div class="page-head"><h2>🔎 البحث الشامل</h2></div><div class="searchbar"><input id="searchInput" placeholder="اسم الزبون أو الهاتف أو رقم العقد"><button id="searchBtn">بحث</button></div><div id="searchResults"></div></section>
+<section id="customerFile" class="page"><div class="page-head"><h2>👤 ملف الزبون</h2><button class="btn dark" data-go="search">رجوع</button></div><div id="customerFileBody"></div></section>
+<section id="customers" class="page"><div class="page-head"><h2>👤 الزبائن</h2><button class="btn gold" id="addCustomer">+ زبون</button></div><div id="customersList"></div></section>
+<section id="measurements" class="page"><div class="page-head"><h2>📐 القياسات</h2><button class="btn gold" id="addMeasurement">+ قياس جديد</button></div><div id="measurementsList"></div></section>
+<section id="contracts" class="page"><div class="page-head"><h2>📄 العقود والوصولات</h2><button class="btn gold" id="addContract">+ عقد جديد</button></div><div id="contractsList"></div></section>
+<section id="attendance" class="page"><div class="page-head"><h2>⏱️ أوقات الدوام</h2><span class="chip">8 ساعات أساسية</span></div><div class="card"><div class="row"><button class="btn green" id="checkIn">🟢 تسجيل حضور</button><button class="btn red" id="checkOut">🔴 تسجيل انصراف</button></div><div class="field"><label>السيلفي الإجباري</label><input id="selfieInput" type="file" accept="image/*" capture="user"></div><div id="attStatus" class="muted" style="font-size:12px"></div></div><div id="attendanceList"></div></section>
+<section id="exhibition" class="page"><div class="page-head"><h2>🏪 المعرض</h2><div class="row"><button class="btn gold" id="addExExpense">+ مصروف</button><button class="btn dark" id="addExNote">+ ملاحظة</button></div></div><div id="exhibitionBody"></div></section>
+<section id="factory" class="page"><div class="page-head"><h2>🏭 المعمل</h2><button class="btn gold" id="addJob">+ عمل جديد</button></div><div id="factoryBody"></div></section>
+<section id="notes" class="page"><div class="page-head"><h2>📢 العاجل وملاحظات الشركة</h2><button class="btn gold" id="addCompanyNote">+ نشر</button></div><div id="notesBody"></div></section>
+<section id="employees" class="page"><div class="page-head"><h2>👥 الموظفون والصلاحيات</h2><button class="btn gold" id="addEmployee">+ موظف</button></div><div id="employeesBody"></div></section>
+<section id="reports" class="page"><div class="page-head"><h2>📊 التقارير</h2></div><div id="reportsBody" class="grid"></div></section>
+<section id="settings" class="page"><div class="page-head"><h2>⚙️ الإعدادات</h2></div><div class="card"><div class="field"><label>اسم الشركة</label><input id="companyName"></div><button class="btn gold" id="saveSettings">حفظ الإعدادات</button><button class="btn dark" id="backupBtn" style="margin-top:8px">تنزيل نسخة احتياطية</button></div></section>
+</main>
+
+<nav class="bottom">
+  <button data-go="home" class="active"><b>🏠</b>الرئيسية</button>
+  <button data-go="search"><b>🔎</b>بحث</button>
+  <button data-go="attendance"><b>⏱️</b>الدوام</button>
+  <button data-go="reports"><b>📊</b>تقارير</button>
+  <button data-go="settings"><b>⚙️</b>إعدادات</button>
+</nav>
+</div>
+
+<div id="modal" class="modal hidden"><div class="modal-box"><div class="modal-top"><h3 id="modalTitle"></h3><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
+
+<script>
+(function(){
+const KEY='tokyo_management_final_black_gold_v1';
+const seed={
+  users:[{id:1,name:'المدير العام',username:'admin',password:'admin123',role:'admin',permissions:{all:true}}],
+  customers:[],measurements:[],contracts:[],attendance:[],expenses:[],jobs:[],
+  notes:[{id:1,area:'company',title:'مرحبًا في إدارة طوكيو',body:'يمكن للمدير نشر القرارات والعطل والأخبار المهمة من هنا.',urgent:true,pinned:true,date:new Date().toISOString()}],
+  settings:{company:'طوكيو'},session:null
+};
+let db;
+try{db=JSON.parse(localStorage.getItem(KEY)||'null')||seed}catch(e){db=seed}
+const $=id=>document.getElementById(id);
+const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+const newId=()=>Date.now()+Math.floor(Math.random()*999);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>Number(n||0).toLocaleString('ar-IQ')+' د.ع';
+const fmt=d=>{try{return new Date(d).toLocaleString('ar-IQ')}catch(e){return d||''}};
+const current=()=>db.users.find(u=>u.id===db.session)||null;
+const isAdmin=()=>current()&&current().role==='admin';
+
+function showLogin(){$('login').classList.remove('hidden');$('app').classList.add('hidden')}
+function showApp(){$('login').classList.add('hidden');$('app').classList.remove('hidden');$('currentUser').textContent=current()?.name||'';renderHome()}
+function go(page){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  $(page)?.classList.add('active');
+  document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b.dataset.go===page));
+  ({home:renderHome,customers:renderCustomers,measurements:renderMeasurements,contracts:renderContracts,attendance:renderAttendance,exhibition:renderExhibition,factory:renderFactory,notes:renderNotes,employees:renderEmployees,reports:renderReports,settings:renderSettings}[page]||(()=>{}))();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function modal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modal').classList.remove('hidden')}
+function closeModal(){$('modal').classList.add('hidden')}
+$('closeModal').onclick=closeModal;
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
+
+$('loginBtn').onclick=()=>{
+  const u=$('loginUser').value.trim(),p=$('loginPass').value;
+  const found=db.users.find(x=>x.username===u&&x.password===p);
+  if(!found){$('loginError').textContent='اسم المستخدم أو كلمة المرور غير صحيحة';return}
+  db.session=found.id;save();$('loginError').textContent='';showApp();
+};
+$('logoutBtn').onclick=()=>{db.session=null;save();showLogin()};
+
+function renderHome(){
+  const urgent=db.notes.find(n=>n.area==='company'&&(n.pinned||n.urgent));
+  $('urgentBox').innerHTML=urgent?`<div class="tag">🚨 عاجل ومثبت</div><h3>${esc(urgent.title)}</h3><div class="muted">${esc(urgent.body)}</div>`:`<div class="tag">🚨 العاجل</div><h3>لا توجد أخبار عاجلة</h3>`;
+  const totalExpenses=db.expenses.reduce((s,x)=>s+Number(x.amount||0),0);
+  $('stats').innerHTML=`<div class="stat"><strong>${db.customers.length}</strong><span>الزبائن</span></div><div class="stat"><strong>${db.contracts.length}</strong><span>العقود</span></div><div class="stat"><strong>${db.measurements.length}</strong><span>القياسات</span></div><div class="stat"><strong>${money(totalExpenses)}</strong><span>المصروفات</span></div>`;
+}
+$('homeSearchBtn').onclick=()=>{$('searchInput').value=$('homeSearch').value;go('search');runSearch()};
+$('searchBtn').onclick=runSearch;
+
+function runSearch(){
+  const q=$('searchInput').value.trim().toLowerCase();
+  if(!q){$('searchResults').innerHTML='<div class="empty">اكتب اسم الزبون أو الهاتف أو رقم العقد.</div>';return}
+  const rows=db.customers.filter(c=>{
+    const cs=db.contracts.filter(k=>k.customerId===c.id);
+    return [c.name,c.phone,c.address].join(' ').toLowerCase().includes(q)||cs.some(k=>String(k.number||'').toLowerCase().includes(q));
+  });
+  $('searchResults').innerHTML=rows.length?rows.map(c=>{
+    const cs=db.contracts.filter(k=>k.customerId===c.id),ms=db.measurements.filter(m=>m.customerId===c.id),js=db.jobs.filter(j=>j.customerId===c.id);
+    return `<div class="card record"><div><b>${esc(c.name)}</b><small>${esc(c.phone)} — ${esc(c.address)}</small><small>عقود ${cs.length} | قياسات ${ms.length} | المعمل ${js.length}</small></div><button class="btn gold" onclick="openCustomerFile(${c.id})">فتح الملف</button></div>`;
+  }).join(''):'<div class="empty">لا توجد نتائج.</div>';
+}
+window.openCustomerFile=cid=>{
+  const c=db.customers.find(x=>x.id===cid); if(!c)return;
+  const cs=db.contracts.filter(k=>k.customerId===cid),ms=db.measurements.filter(m=>m.customerId===cid),js=db.jobs.filter(j=>j.customerId===cid);
+  $('customerFileBody').innerHTML=`<div class="card"><h3>${esc(c.name)}</h3><div class="muted">${esc(c.phone)} — ${esc(c.address)}</div></div>
+  <div class="card"><b>📄 العقود</b>${cs.length?cs.map(k=>`<div class="record"><div><b>${esc(k.number)}</b><small>الكلي ${money(k.total)} | الواصل ${money(k.paid)} | المتبقي ${money(k.total-k.paid)}</small></div></div>`).join(''):'<div class="muted">لا يوجد</div>'}</div>
+  <div class="card"><b>📐 القياسات</b>${ms.length?ms.map(m=>`<div class="record"><div><b>${esc(m.shape)}</b><small>ارتفاع ${esc(m.height)} سم — ${esc((m.elements||[]).join('، '))}</small></div></div>`).join(''):'<div class="muted">لا يوجد</div>'}</div>
+  <div class="card"><b>🏭 المعمل</b>${js.length?js.map(j=>`<div class="record"><div><b>${esc(j.title)}</b><small>${esc(j.status)} — ${esc(j.due||'-')}</small></div></div>`).join(''):'<div class="muted">لا يوجد</div>'}</div>`;
+  go('customerFile');
+};
+
+function renderCustomers(){$('customersList').innerHTML=db.customers.length?db.customers.map(c=>`<div class="card record"><div><b>${esc(c.name)}</b><small>${esc(c.phone)} — ${esc(c.address)}</small></div><button class="btn dark" onclick="openCustomerFile(${c.id})">فتح</button></div>`).join(''):'<div class="empty">لا يوجد زبائن بعد.</div>'}
+$('addCustomer').onclick=()=>{
+  modal('إضافة زبون',`<div class="formgrid"><div class="field"><label>الاسم</label><input id="cName"></div><div class="field"><label>الهاتف</label><input id="cPhone"></div><div class="field wide"><label>العنوان</label><input id="cAddress"></div><div class="field wide"><label>ملاحظات</label><textarea id="cNotes"></textarea></div></div><button class="btn gold full" id="saveCustomer">حفظ الزبون</button>`);
+  $('saveCustomer').onclick=()=>{db.customers.push({id:newId(),name:$('cName').value,phone:$('cPhone').value,address:$('cAddress').value,notes:$('cNotes').value,date:new Date().toISOString()});save();closeModal();renderCustomers()};
+};
+
+const customerOptions=()=>db.customers.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+
+function renderMeasurements(){$('measurementsList').innerHTML=db.measurements.length?db.measurements.map(m=>{const c=db.customers.find(x=>x.id===m.customerId);return `<div class="card"><div class="record"><div><b>${esc(c?c.name:'بدون زبون')}</b><small>${esc(m.shape)} — ارتفاع ${esc(m.height)} سم</small></div><span class="chip gold">${(m.elements||[]).length} عناصر</span></div><div class="muted">${esc(m.details)}</div></div>`}).join(''):'<div class="empty">لا توجد قياسات.</div>'}
+$('addMeasurement').onclick=()=>{
+  if(!db.customers.length){alert('أضف زبونًا أولًا');go('customers');return}
+  const els=['باب','شباك','نقطة ماء للسنك','نقطة كهرباء','ساحبة','طباخ','فرن','مايكرو','غسالة','ثلاجة','مجمدة'];
+  modal('إضافة قياس',`<div class="formgrid"><div class="field"><label>الزبون</label><select id="mCustomer">${customerOptions()}</select></div><div class="field"><label>شكل المكان</label><select id="mShape"><option>مربع</option><option>مستطيل</option><option>أضلاع / جدران حرة</option></select></div><div class="field"><label>ارتفاع المطبخ سم</label><input id="mHeight" type="number"></div><div class="field wide"><label>العناصر</label><div class="checks">${els.map(x=>`<label class="check"><input type="checkbox" class="mEl" value="${x}"> ${x}</label>`).join('')}</div></div><div class="field wide"><label>تفاصيل الأبعاد والملاحظات</label><textarea id="mDetails"></textarea></div></div><button class="btn gold full" id="saveMeasurement">حفظ القياس</button>`);
+  $('saveMeasurement').onclick=()=>{const elements=[...document.querySelectorAll('.mEl:checked')].map(x=>x.value);db.measurements.push({id:newId(),customerId:Number($('mCustomer').value),shape:$('mShape').value,height:$('mHeight').value,elements,details:$('mDetails').value,date:new Date().toISOString()});save();closeModal();renderMeasurements()};
+};
+
+function renderContracts(){$('contractsList').innerHTML=db.contracts.length?db.contracts.map(k=>{const c=db.customers.find(x=>x.id===k.customerId);return `<div class="card"><div class="record"><div><b>${esc(k.number)} — ${esc(c?c.name:'')}</b><small>الكلي ${money(k.total)} | الواصل ${money(k.paid)} | المتبقي ${money(k.total-k.paid)}</small></div><span class="chip">${esc(k.status)}</span></div><div class="row"><button class="btn gold" onclick="printContract(${k.id})">فتح / طباعة</button><button class="btn dark" onclick="addPayment(${k.id})">إضافة دفعة</button></div></div>`}).join(''):'<div class="empty">لا توجد عقود.</div>'}
+$('addContract').onclick=()=>{
+  if(!db.customers.length){alert('أضف زبونًا أولًا');go('customers');return}
+  modal('عقد جديد',`<div class="formgrid"><div class="field"><label>الزبون</label><select id="kCustomer">${customerOptions()}</select></div><div class="field"><label>رقم العقد</label><input id="kNumber" value="C-${String(Date.now()).slice(-6)}"></div><div class="field"><label>السعر الكلي</label><input id="kTotal" type="number"></div><div class="field"><label>الواصل</label><input id="kPaid" type="number"></div><div class="field"><label>من</label><input id="kFrom" type="date"></div><div class="field"><label>إلى</label><input id="kTo" type="date"></div><div class="field"><label>تاريخ الوصل</label><input id="kReceipt" type="date"></div><div class="field"><label>الحالة</label><select id="kStatus"><option>جديد</option><option>قيد التنفيذ</option><option>جاهز</option><option>تم التسليم</option></select></div><div class="field wide"><label>الملاحظات السبعة — كل ملاحظة بسطر</label><textarea id="kNotes"></textarea></div><div class="field wide"><label>التصميم 3D</label><input id="k3d"></div><div class="field wide"><label>التصميم البياني / الإضافات</label><textarea id="kAdd"></textarea></div></div><button class="btn gold full" id="saveContract">حفظ العقد</button>`);
+  $('saveContract').onclick=()=>{db.contracts.push({id:newId(),customerId:Number($('kCustomer').value),number:$('kNumber').value,total:Number($('kTotal').value||0),paid:Number($('kPaid').value||0),from:$('kFrom').value,to:$('kTo').value,receipt:$('kReceipt').value,status:$('kStatus').value,notes:$('kNotes').value.split('\n').filter(Boolean).slice(0,7),design3d:$('k3d').value,additions:$('kAdd').value,payments:[],date:new Date().toISOString()});save();closeModal();renderContracts()};
+};
+window.addPayment=kid=>{const k=db.contracts.find(x=>x.id===kid);modal('إضافة دفعة',`<div class="field"><label>المبلغ</label><input id="payAmount" type="number"></div><div class="field"><label>ملاحظة</label><input id="payNote"></div><button class="btn gold full" id="savePay">حفظ الدفعة</button>`);$('savePay').onclick=()=>{const a=Number($('payAmount').value||0);k.paid+=a;k.payments.push({amount:a,note:$('payNote').value,date:new Date().toISOString()});save();closeModal();renderContracts()}};
+window.printContract=kid=>{const k=db.contracts.find(x=>x.id===kid),c=db.customers.find(x=>x.id===k.customerId),notes=(k.notes||[]).map((n,i)=>`<div>${i+1}. ${esc(n)}</div>`).join('');modal('العقد',`<div class="no-print"><button class="btn gold" onclick="window.print()">طباعة / حفظ PDF</button></div><div class="contract-paper"><div class="paper-logo"><b>TOKYO</b><div>إدارة طوكيو</div><h2>عقد تجهيز وتنفيذ</h2></div><div class="paper-grid"><div class="paper-box"><b>اسم الزبون:</b> ${esc(c?c.name:'')}</div><div class="paper-box"><b>الهاتف:</b> ${esc(c?c.phone:'')}</div><div class="paper-box"><b>العنوان:</b> ${esc(c?c.address:'')}</div><div class="paper-box"><b>رقم العقد:</b> ${esc(k.number)}</div><div class="paper-box"><b>السعر الكلي:</b> ${money(k.total)}</div><div class="paper-box"><b>الواصل:</b> ${money(k.paid)}</div><div class="paper-box"><b>المتبقي:</b> ${money(k.total-k.paid)}</div><div class="paper-box"><b>تاريخ الوصل:</b> ${esc(k.receipt)}</div><div class="paper-box"><b>التنفيذ من:</b> ${esc(k.from)}</div><div class="paper-box"><b>إلى:</b> ${esc(k.to)}</div></div><div class="paper-notes"><b>ملاحظات العقد:</b><br>${notes}</div><div class="signs"><div class="sign">توقيع الزبون</div><div class="sign">توقيع الموظف</div><div class="sign">البصمة</div></div></div>`)};
+
+function renderAttendance(){const u=current();const rows=isAdmin()?db.attendance:db.attendance.filter(a=>a.userId===u.id);$('attendanceList').innerHTML=rows.length?`<div class="table-wrap"><table class="table"><tr><th>الموظف</th><th>العملية</th><th>الوقت</th><th>الموقع</th><th>السيلفي</th></tr>${rows.slice().reverse().map(a=>{const emp=db.users.find(x=>x.id===a.userId);return `<tr><td>${esc(emp?emp.name:'')}</td><td>${a.type==='in'?'حضور':'انصراف'}</td><td>${fmt(a.date)}</td><td>${esc(a.lat?Number(a.lat).toFixed(5)+', '+Number(a.lng).toFixed(5):'—')}</td><td>${a.selfie?'✅':'—'}</td></tr>`}).join('')}</table></div>`:'<div class="empty">لا يوجد سجل دوام.</div>'}
+function doAttendance(type){const file=$('selfieInput').files[0];if(!file){alert('السيلفي إجباري قبل التسجيل');return}const r=new FileReader();r.onload=()=>{if(!navigator.geolocation){alert('الموقع غير مدعوم');return}navigator.geolocation.getCurrentPosition(p=>{db.attendance.push({id:newId(),userId:current().id,type,lat:p.coords.latitude,lng:p.coords.longitude,selfie:r.result,date:new Date().toISOString()});save();$('attStatus').textContent='تم التسجيل بنجاح بوقت النظام';renderAttendance()},()=>alert('يجب السماح بالموقع'),{enableHighAccuracy:true,timeout:10000})};r.readAsDataURL(file)}
+$('checkIn').onclick=()=>doAttendance('in');$('checkOut').onclick=()=>doAttendance('out');
+
+const areaExpenses=a=>db.expenses.filter(x=>x.area===a);
+const areaNotes=a=>db.notes.filter(x=>x.area===a);
+function expenseModal(area,after){modal('إضافة مصروف',`<div class="field"><label>اسم المصروف</label><input id="eName"></div><div class="field"><label>السعر</label><input id="eAmount" type="number"></div><div class="field"><label>ملاحظة</label><textarea id="eNote"></textarea></div><button class="btn gold full" id="saveExpense">حفظ</button>`);$('saveExpense').onclick=()=>{db.expenses.push({id:newId(),area,name:$('eName').value,amount:Number($('eAmount').value||0),note:$('eNote').value,userId:current().id,date:new Date().toISOString()});save();closeModal();after()}}
+function noteModal(area,after){modal('إضافة ملاحظة',`<div class="field"><label>العنوان</label><input id="nTitle"></div><div class="field"><label>الملاحظة</label><textarea id="nBody"></textarea></div><label class="check"><input type="checkbox" id="nUrgent"> عاجل</label><label class="check"><input type="checkbox" id="nPinned"> مثبت</label><button class="btn gold full" id="saveNote" style="margin-top:10px">حفظ</button>`);$('saveNote').onclick=()=>{db.notes.push({id:newId(),area,title:$('nTitle').value,body:$('nBody').value,urgent:$('nUrgent').checked,pinned:$('nPinned').checked,userId:current().id,date:new Date().toISOString()});save();closeModal();after()}}
+
+function renderExhibition(){const es=areaExpenses('exhibition'),ns=areaNotes('exhibition'),total=es.reduce((s,x)=>s+Number(x.amount||0),0);$('exhibitionBody').innerHTML=`<div class="stats"><div class="stat"><strong>${money(total)}</strong><span>مجموع المصروفات</span></div><div class="stat"><strong>${es.length}</strong><span>عدد المصروفات</span></div><div class="stat"><strong>${ns.length}</strong><span>الملاحظات</span></div><div class="stat"><strong>${db.attendance.filter(a=>a.type==='in').length}</strong><span>سجلات الحضور</span></div></div><div class="card" style="margin-top:10px"><b>💰 المصروفات</b>${es.length?es.slice().reverse().map(x=>`<div class="record"><div><b>${esc(x.name)}</b><small>${fmt(x.date)}</small></div><span class="money">${money(x.amount)}</span></div>`).join(''):'<div class="muted">لا توجد مصروفات</div>'}</div><div class="card"><b>📝 ملاحظات المعرض</b>${ns.length?ns.slice().reverse().map(x=>`<div class="record"><div><b>${esc(x.title)}</b><small>${esc(x.body)}</small></div></div>`).join(''):'<div class="muted">لا توجد ملاحظات</div>'}</div>`}
+$('addExExpense').onclick=()=>expenseModal('exhibition',renderExhibition);
+$('addExNote').onclick=()=>noteModal('exhibition',renderExhibition);
+
+function renderFactory(){const ex=areaExpenses('factory'),total=ex.reduce((s,x)=>s+Number(x.amount||0),0);$('factoryBody').innerHTML=`<div class="card"><b>📋 جدول العمل</b>${db.jobs.length?db.jobs.slice().sort((a,b)=>b.priority-a.priority).map(j=>{const c=db.customers.find(x=>x.id===j.customerId);return `<div class="record"><div><b>${esc(c?c.name:'')} — ${esc(j.title)}</b><small>${esc(j.status)} | موعد ${esc(j.due||'-')}</small><small>المواد: ${esc(j.materials||'—')} | النواقص: ${esc(j.shortages||'—')}</small></div><span class="chip ${j.priority?'gold':''}">${j.priority?'عاجل':'عادي'}</span></div>`}).join(''):'<div class="muted">لا توجد أعمال</div>'}</div><div class="card"><b>💰 مصروفات المعمل — ${money(total)}</b><br><button class="btn dark" id="factoryExpenseBtn" style="margin-top:8px">+ إضافة مصروف</button></div>`;$('factoryExpenseBtn').onclick=()=>expenseModal('factory',renderFactory)}
+$('addJob').onclick=()=>{if(!db.customers.length){alert('أضف زبونًا أولًا');go('customers');return}modal('إضافة عمل للمعمل',`<div class="formgrid"><div class="field"><label>الزبون</label><select id="jCustomer">${customerOptions()}</select></div><div class="field"><label>اسم العمل</label><input id="jTitle"></div><div class="field"><label>الحالة</label><select id="jStatus"><option>بانتظار العمل</option><option>بانتظار المواد</option><option>قيد التصنيع</option><option>قيد التشطيب</option><option>جاهز</option><option>تم التسليم</option></select></div><div class="field"><label>موعد التسليم</label><input id="jDue" type="date"></div><div class="field wide"><label>قائمة المواد</label><textarea id="jMaterials"></textarea></div><div class="field wide"><label>النواقص</label><textarea id="jShortages"></textarea></div></div><label class="check"><input type="checkbox" id="jPriority"> عاجل</label><button class="btn gold full" id="saveJob" style="margin-top:10px">حفظ</button>`);$('saveJob').onclick=()=>{db.jobs.push({id:newId(),customerId:Number($('jCustomer').value),title:$('jTitle').value,status:$('jStatus').value,due:$('jDue').value,materials:$('jMaterials').value,shortages:$('jShortages').value,priority:$('jPriority').checked?1:0,date:new Date().toISOString()});save();closeModal();renderFactory()}};
+
+function renderNotes(){const ns=areaNotes('company');$('notesBody').innerHTML=ns.length?ns.slice().reverse().map(n=>`<div class="card ${n.urgent?'urgent':''}"><div class="record"><div><b>${n.pinned?'📌 ':''}${esc(n.title)}</b><small>${fmt(n.date)}</small></div>${n.urgent?'<span class="chip gold">عاجل</span>':''}</div><div class="muted">${esc(n.body)}</div></div>`).join(''):'<div class="empty">لا توجد ملاحظات.</div>'}
+$('addCompanyNote').onclick=()=>noteModal('company',()=>{renderNotes();renderHome()});
+
+function renderEmployees(){if(!isAdmin()){$('employeesBody').innerHTML='<div class="empty">هذا القسم للمدير فقط.</div>';return}$('employeesBody').innerHTML=db.users.map(u=>`<div class="card record"><div><b>${esc(u.name)}</b><small>${esc(u.username)} — ${u.role==='admin'?'مدير':'موظف'}</small></div><span class="chip">${u.role==='admin'?'👑':'👤'}</span></div>`).join('')}
+$('addEmployee').onclick=()=>{if(!isAdmin()){alert('المدير فقط');return}const ps=[['search','البحث'],['customers','الزبائن'],['measurements','القياسات'],['contracts','العقود'],['attendance','الدوام'],['exhibition','المعرض'],['factory','المعمل'],['notes','الملاحظات'],['reports','التقارير']];modal('إضافة موظف',`<div class="formgrid"><div class="field"><label>الاسم</label><input id="uName"></div><div class="field"><label>اسم المستخدم</label><input id="uUser"></div><div class="field"><label>كلمة المرور</label><input id="uPass" type="password"></div><div class="field wide"><label>صلاحيات الموظف</label><div class="checks">${ps.map(p=>`<label class="check"><input class="uPerm" type="checkbox" value="${p[0]}"> ${p[1]}</label>`).join('')}</div></div></div><button class="btn gold full" id="saveEmployee">حفظ الموظف</button>`);$('saveEmployee').onclick=()=>{const p={};document.querySelectorAll('.uPerm:checked').forEach(x=>p[x.value]=true);db.users.push({id:newId(),name:$('uName').value,username:$('uUser').value,password:$('uPass').value,role:'employee',permissions:p});save();closeModal();renderEmployees()}};
+
+function renderReports(){const total=db.contracts.reduce((s,x)=>s+Number(x.total||0),0),paid=db.contracts.reduce((s,x)=>s+Number(x.paid||0),0),ex=db.expenses.reduce((s,x)=>s+Number(x.amount||0),0);$('reportsBody').innerHTML=[['الزبائن',db.customers.length],['العقود',db.contracts.length],['إجمالي العقود',money(total)],['الواصل',money(paid)],['المتبقي',money(total-paid)],['المصروفات',money(ex)],['القياسات',db.measurements.length],['أعمال المعمل',db.jobs.length]].map(x=>`<div class="module stat"><strong>${x[1]}</strong><span>${x[0]}</span></div>`).join('')}
+function renderSettings(){$('companyName').value=db.settings.company||'طوكيو'}
+$('saveSettings').onclick=()=>{db.settings.company=$('companyName').value;save();alert('تم الحفظ')}
+$('backupBtn').onclick=()=>{const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='TOKYO-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+
+if(db.session&&current())showApp();else showLogin();
+})();
+</script>
+</body>
+</html>
